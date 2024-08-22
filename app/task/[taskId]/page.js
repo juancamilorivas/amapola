@@ -18,7 +18,6 @@ import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
 import { updateTask } from "../../../lib/features/taskSlice";
 import { setComentaries } from "../../../lib/features/taskSlice";
-import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
 const states = [
@@ -34,8 +33,6 @@ const priority = [
 ];
 
 export default function CreateTaskComponent({ params }) {
-  const router = useRouter();
-
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.task.tasks);
   const comentaries = useSelector((state) => state.task.comentaries);
@@ -64,22 +61,25 @@ export default function CreateTaskComponent({ params }) {
       createdAt: task.createdAt,
     };
 
+    const comentario = formData.get("comentaries").trim();
     const updatedComentaries = {
       id: uuidv4(),
-      comentario: formData.get("comentaries"),
+      comentario: comentario,
       createdAt: new Date(),
     };
 
     dispatch(updateTask(updatedTask));
-    dispatch(setComentaries(updatedComentaries));
+
+    if (comentario) {
+      dispatch(setComentaries(updatedComentaries));
+    }
 
     setShowAlert(true);
     event.target.reset();
 
     setTimeout(() => {
       setShowAlert(false);
-      router.push("/");
-    }, 1000);
+    }, 3000);
   };
 
   if (!task) return <div>Cargando...</div>;
@@ -176,7 +176,7 @@ export default function CreateTaskComponent({ params }) {
               </Grid>
 
               <Grid xs={12}>
-                <FormControl fullWidth required>
+                <FormControl fullWidth>
                   <InputLabel>Comentarios</InputLabel>
                   <OutlinedInput label="Comentarios" name="comentaries" />
                 </FormControl>
@@ -200,7 +200,7 @@ export default function CreateTaskComponent({ params }) {
           </CardActions>
           {showAlert && (
             <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-              Tarea guardada exitosamente.
+              Guardado exitosamente.
             </Alert>
           )}
         </Card>

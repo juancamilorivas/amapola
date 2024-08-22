@@ -18,6 +18,7 @@ import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
 import { TextField } from "@mui/material";
 import { setTask } from "../lib/features/taskSlice";
+import { useRouter } from "next/navigation";
 
 const states = [
   { value: "activa", label: "Activa" },
@@ -32,6 +33,7 @@ const priority = [
 ];
 
 export function CreateTaskComponent() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [showAlert, setShowAlert] = useState(false);
 
@@ -58,7 +60,8 @@ export function CreateTaskComponent() {
 
     setTimeout(() => {
       setShowAlert(false);
-    }, 5000);
+      router.push("/");
+    }, 1000);
   };
 
   return (
