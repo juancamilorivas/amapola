@@ -21,8 +21,8 @@ import { setTask } from "../lib/features/taskSlice";
 
 const states = [
   { value: "activa", label: "Activa" },
-  { value: "terminada", label: "Terminada" },
   { value: "proceso", label: "En proceso" },
+  { value: "terminada", label: "Terminada" },
 ];
 
 const priority = [
