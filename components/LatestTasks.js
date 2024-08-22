@@ -151,22 +151,6 @@ export default function LatestTasks({ tasks = [], sx }) {
                     />
                   </TableCell>
 
-                  {/* <TableCell
-                      sx={{
-                        maxWidth: "150px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      <Chip
-                        color={colorr}
-                        label={labell}
-                        size="small"
-                        sx={{ width: "100px", textAlign: "center" }}
-                      />
-                    </TableCell> */}
-
                   <TableCell
                     sx={{
                       maxWidth: "150px",
