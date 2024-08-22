@@ -17,8 +17,14 @@ import dayjs from "dayjs";
 
 const statusMap = {
   activa: { label: "Activa", color: "warning" },
-  terminada: { label: "Terminada", color: "success" },
   proceso: { label: "En proceso", color: "error" },
+  terminada: { label: "Terminada", color: "success" },
+};
+
+const priorityMap = {
+  normal: { label: "Normal", color: "warning" },
+  moderada: { label: "Moderada", color: "error" },
+  urgente: { label: "Urgente", color: "success" },
 };
 
 export default function LatestTasks({ tasks = [], sx }) {
@@ -32,7 +38,7 @@ export default function LatestTasks({ tasks = [], sx }) {
     <Card
       sx={{
         ...sx,
-        width: { xs: "375px", sm: "500px", md: "1000px" },
+        width: { xs: "375px", sm: "500px", md: "900px" },
       }}
     >
       <CardHeader title="Tareas" />
@@ -43,13 +49,22 @@ export default function LatestTasks({ tasks = [], sx }) {
             <TableRow>
               <TableCell>Título</TableCell>
               <TableCell>Tarea</TableCell>
-              <TableCell sortDirection="desc">Fecha</TableCell>
+              <TableCell sortDirection="desc">Fecha creacion</TableCell>
+              <TableCell sortDirection="desc">Fecha vencimiento</TableCell>
               <TableCell>Estado</TableCell>
+              <TableCell>Prioridad</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {tasks.map((task) => {
               const { label, color } = statusMap[task.status] || {
+                label: "Unknown",
+                color: "default",
+              };
+
+              const { label: priorityLabel, color: priorityColor } = priorityMap[
+                task.prioridad
+              ] || {
                 label: "Unknown",
                 color: "default",
               };
@@ -81,9 +96,10 @@ export default function LatestTasks({ tasks = [], sx }) {
                   >
                     {task.description}
                   </TableCell>
+
                   <TableCell
                     sx={{
-                      maxWidth: "50px",
+                      maxWidth: "100px",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
@@ -91,9 +107,21 @@ export default function LatestTasks({ tasks = [], sx }) {
                   >
                     {dayjs(task.createdAt).format("MMM D, YYYY")}
                   </TableCell>
+
                   <TableCell
                     sx={{
-                      maxWidth: "50px",
+                      maxWidth: "100px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {dayjs(task.vencimiento).format("MMM D, YYYY")}
+                  </TableCell>
+
+                  <TableCell
+                    sx={{
+                      maxWidth: "150px",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
@@ -102,6 +130,38 @@ export default function LatestTasks({ tasks = [], sx }) {
                     <Chip
                       color={color}
                       label={label}
+                      size="small"
+                      sx={{ width: "100px", textAlign: "center" }}
+                    />
+                  </TableCell>
+
+                  {/* <TableCell
+                      sx={{
+                        maxWidth: "150px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      <Chip
+                        color={colorr}
+                        label={labell}
+                        size="small"
+                        sx={{ width: "100px", textAlign: "center" }}
+                      />
+                    </TableCell> */}
+
+                  <TableCell
+                    sx={{
+                      maxWidth: "150px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <Chip
+                      color={priorityColor}
+                      label={priorityLabel}
                       size="small"
                       sx={{ width: "100px", textAlign: "center" }}
                     />
