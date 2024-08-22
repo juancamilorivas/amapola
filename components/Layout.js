@@ -21,6 +21,8 @@ import FlashOnIcon from "@mui/icons-material/FlashOn";
 import AccountMenu from "./AccountMenu";
 import Container from "@mui/material/Container";
 import SearchIcon from "@mui/icons-material/Search";
+import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
+import Typography from "@mui/material/Typography";
 
 const drawerWidth = 240;
 
@@ -49,33 +51,48 @@ export default function Layout({ children }) {
     handleDrawerClose();
   };
 
-
   const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {[
-          { text: "Dashboard", icon: <FlashOnIcon />, route: "/" },
-          { text: "Crear tarea", icon: <AddBoxIcon />, route: "/createTask" },
-          { text: "Perfil", icon: <PersonIcon />, route: "/profile" },
-        ].map((item, index) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton
-              onClick={() => handleButtonClick(item.route)}
-              sx={{
-                "&:hover": {
-                  backgroundColor: "#635AFB",
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: "white" }}>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} sx={{ color: "white" }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <Box>
+        <Toolbar />
+        <Divider />
+        <List>
+          {[
+            { text: "Dashboard", icon: <FlashOnIcon />, route: "/" },
+            { text: "Crear tarea", icon: <AddBoxIcon />, route: "/createTask" },
+            { text: "Perfil", icon: <PersonIcon />, route: "/profile" },
+          ].map((item, index) => (
+            <ListItem key={item.text} disablePadding>
+              <ListItemButton
+                onClick={() => handleButtonClick(item.route)}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "#635AFB",
+                  },
+                }}
+              >
+                <ListItemIcon sx={{ color: "white" }}>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} sx={{ color: "white" }} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+      </Box>
+
+      <Box
+        sx={{
+          mt: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          p: 2,
+        }}
+      >
+        <LocalFloristIcon sx={{ fontSize: 24, color: "white" }} />
+        <Typography sx={{ color: "white", mt: 1 }}>Amapola</Typography>
+      </Box>
+    </Box>
   );
 
   const handleSearchClick = () => {

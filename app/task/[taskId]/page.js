@@ -66,8 +66,8 @@ export default function CreateTaskComponent({ params }) {
     <form onSubmit={handleSubmit}>
       <Card>
         <CardHeader
-          subheader="Edite y guarde una tarea a la vez"
-          title="Tarea"
+          subheader="Edita o finaliza la tarea"
+          title="Editar"
         />
         <Divider />
         <CardContent>

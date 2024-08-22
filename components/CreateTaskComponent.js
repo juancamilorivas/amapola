@@ -42,16 +42,13 @@ export function CreateTaskComponent() {
 
     dispatch(setTask(newTask));
 
-    // Mostrar la alerta
     setShowAlert(true);
 
-    // Limpiar el formulario
     event.target.reset();
 
-    // Ocultar la alerta después de 3 segundos
     setTimeout(() => {
       setShowAlert(false);
-    }, 3000);
+    }, 5000);
   };
 
   return (
