@@ -46,6 +46,7 @@ export function CreateTaskComponent() {
       status: formData.get("Estado"),
       vencimiento: formData.get("vencimiento"),
       prioridad: formData.get("Prioridad"),
+      assignedTo: formData.get("asignadoA"),
       createdAt: new Date(),
     };
 
@@ -93,6 +94,16 @@ export function CreateTaskComponent() {
                 </FormControl>
               </Grid>
 
+              <Grid xs={12}>
+                <FormControl fullWidth required>
+                  <InputLabel>Asignado a</InputLabel>
+                  <OutlinedInput
+                    label="Asignado a"
+                    name="asignadoA"
+                  />
+                </FormControl>
+              </Grid>
+
               <Grid md={6} xs={12}>
                 <FormControl fullWidth>
                   <InputLabel>Estado</InputLabel>
@@ -111,8 +122,6 @@ export function CreateTaskComponent() {
                 </FormControl>
               </Grid>
 
-
-
               <Grid md={6} xs={12}>
                 <FormControl fullWidth>
                   <InputLabel>Prioridad</InputLabel>
@@ -130,8 +139,6 @@ export function CreateTaskComponent() {
                   </Select>
                 </FormControl>
               </Grid>
-
-
 
               <Grid md={6} xs={12}>
                 <TextField

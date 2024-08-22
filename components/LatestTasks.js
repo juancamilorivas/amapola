@@ -38,7 +38,7 @@ export default function LatestTasks({ tasks = [], sx }) {
     <Card
       sx={{
         ...sx,
-        width: { xs: "375px", sm: "500px", md: "900px" },
+        width: { xs: "375px", sm: "500px", md: "1000px" },
       }}
     >
       <CardHeader title="Tareas" />
@@ -49,6 +49,7 @@ export default function LatestTasks({ tasks = [], sx }) {
             <TableRow>
               <TableCell>Título</TableCell>
               <TableCell>Tarea</TableCell>
+              <TableCell>Asignacion</TableCell>
               <TableCell sortDirection="desc">Fecha creacion</TableCell>
               <TableCell sortDirection="desc">Fecha vencimiento</TableCell>
               <TableCell>Estado</TableCell>
@@ -86,6 +87,21 @@ export default function LatestTasks({ tasks = [], sx }) {
                   >
                     {task.title}
                   </TableCell>
+
+
+                  <TableCell
+                    sx={{
+                      maxWidth: "100px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {task.assignedTo}
+                  </TableCell>
+
+
+
                   <TableCell
                     sx={{
                       maxWidth: "200px",
